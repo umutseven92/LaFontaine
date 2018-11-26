@@ -3,7 +3,7 @@ import cv2
 
 class VideoGenerator:
 
-    def generate_from_images(self, images, path):
+    def generate_from_opencv_images(self, images, path):
         height, width, layers = images[1].shape
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
 
@@ -14,3 +14,14 @@ class VideoGenerator:
 
         cv2.destroyAllWindows()
         video.release()
+
+    def generate_from_image_paths(self, image_paths, path):
+
+        images = []
+
+        for i in image_paths:
+            image = cv2.imread(i)
+            images.append(image)
+
+        self.generate_from_opencv_images(images, path)
+
