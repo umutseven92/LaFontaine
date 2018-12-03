@@ -1,18 +1,24 @@
 import cv2
 from lafontaine.video_parser.frame import Frame
+from lafontaine.video_parser.video_stats import VideoStats
 
 
 class VideoParser:
-    def __init__(self, video_path: str) -> None:
-        self.video_path = video_path
+    def __init__(self, video_path):
+        self.video = cv2.VideoCapture(video_path)
+        fps = self.video.get(cv2.CAP_PROP_FPS)
+        width = self.video.get(cv2.CAP_PROP_FRAME_WIDTH)
+        height = self.video.get(cv2.CAP_PROP_FRAME_HEIGHT)
+        frame_count = int(self.video.get(cv2.CAP_PROP_FRAME_COUNT))
+
+        self.video_stats = VideoStats(fps, width, height, frame_count)
 
     def parse_video(self):
-        vidcap = cv2.VideoCapture(self.video_path)
-        success, image = vidcap.read()
+        success, image = self.video.read()
         count = 0
         while success:
             yield Frame(image, count)
-            success, image = vidcap.read()
+            success, image = self.video.read()
             print(f'Read frame {count}: {success}')
             count += 1
 
