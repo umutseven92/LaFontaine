@@ -11,10 +11,11 @@ scenes into one video which is the trailer.
 """
 
 import argparse
-from lafontaine.video_parser.video_parser import VideoParser
-from lafontaine.generator.video_generator import VideoGenerator
+import time
+
 from feature_detector.feature_director import FeatureDirector
-from lafontaine.video_parser.scene import Scene
+from lafontaine.generator.video_generator import VideoGenerator
+from lafontaine.video_parser.video_parser_handler import VideoParserHandler
 
 parser = argparse.ArgumentParser(description='Generate trailers from movies')
 parser.add_argument('-f', '--file', help='Path for the video', required=True)
@@ -26,28 +27,19 @@ path_to_video = args['file']
 feature_director = FeatureDirector()
 
 # Parser
-video_parser = VideoParser(path_to_video)
+video_parser_handler = VideoParserHandler(path_to_video, 5)
 
-video_stats = video_parser.video_stats
+video_stats = video_parser_handler.video_stats
 print(f'Loaded {video_stats.width}x{video_stats.height} video with {video_stats.fps} FPS.')
 
-scenes = []
-current_scene = None
+start = time.time()
+print('Started processing..')
 
-for frame in video_parser.parse_video():
-    result = feature_director.check_for_image_features(frame)
-    if result:
-        if current_scene is None:
-            current_scene = Scene()
+#  Parse scenes
+scenes = video_parser_handler.get_scenes(feature_director)
 
-        current_scene.add_frame(frame)
-    else:
-        if current_scene is not None:
-            scenes.append(current_scene)
-            current_scene = None
-
-    percent = (frame.count * 100)/video_stats.frame_count
-    print(f'Processed frame {frame.count} of {video_stats.frame_count}\t ({percent:.2f}%)')
+end = time.time()
+print(f'Finished processing. Took {end - start} seconds.')
 
 # Generator
 video_generator = VideoGenerator()
@@ -56,3 +48,8 @@ count = 0
 for s in scenes:
     video_generator.generate_from_scene(s, f'out/scene{count}.avi')
     count += 1
+
+"""
+Benchmarks
+2018-12-03, No optimizations: Processing 30 second, 1024*768 video takes 292 seconds.
+"""
