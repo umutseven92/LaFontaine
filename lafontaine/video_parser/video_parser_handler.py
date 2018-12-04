@@ -1,5 +1,4 @@
 import cv2
-import multiprocessing as mp
 from lafontaine.video_parser.video_stats import VideoStats
 from lafontaine.video_parser.video_parser import VideoParser
 
@@ -13,7 +12,6 @@ class VideoParserHandler:
         height = video.get(cv2.CAP_PROP_FRAME_HEIGHT)
         frame_count = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
         self.video_stats = VideoStats(fps, width, height, frame_count)
-
         parsers = []
 
         for i in range(0, split):
@@ -24,20 +22,13 @@ class VideoParserHandler:
         self.parsers = parsers
 
     def get_scenes(self, feature_director):
-        pool = mp.Pool(processes=4)
-
         all_scenes = []
 
-        [pool.apply(self.parsers[x].parse_scenes, args=(feature_director, self.video_stats.frame_count)) for x in range(0, len(self.parsers))]
-        pool.map()
-        mp.Pool(processes=4).map(costly_function, population)
+        for parser in self.parsers:
+            all_scenes.extend(self.run_parser(parser, feature_director))
 
-        #for parser in self.parsers:
-        #    scenes = parser.parse_scenes(feature_director, self.video_stats.frame_count)
-        #    all_scenes.extend(scenes)
+        return all_scenes
 
-
-
-    def run_parser(self, parser, feature_director, frame_count):
-        return parser.parse_scenes(feature_director, frame_count)
-
+    def run_parser(self, parser, feature_director):
+        scenes = parser.parse_scenes(feature_director, self.video_stats.frame_count)
+        return scenes
