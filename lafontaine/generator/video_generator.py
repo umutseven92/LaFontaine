@@ -1,19 +1,21 @@
-import cv2
+from moviepy.audio.io.AudioFileClip import AudioFileClip
+from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
+
+from parser.frame import Frame
+from typing import List
 
 
 class VideoGenerator:
 
-    def generate_from_scene(self, scene, path):
-        self.__generate_from_frames(scene.frames, path)
+    def generate_from_scene(self, scene, path, fps):
+        self._generate_from_frames(scene.frames, path, fps)
 
-    def __generate_from_frames(self, frames, path):
-        height, width, layers = frames[0].image.shape
-        fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    def _generate_from_frames(self, frames: List[Frame], path, fps):
+        images = []
 
-        video = cv2.VideoWriter(path, fourcc, 24.0, (width, height))
+        for f in frames:
+            images.append(f.image)
 
-        for j in range(0, len(frames)):
-            video.write(frames[j].image)
+        clip = ImageSequenceClip(images, fps=fps)
 
-        cv2.destroyAllWindows()
-        video.release()
+        clip.write_videofile(path)

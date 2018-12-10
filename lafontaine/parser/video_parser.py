@@ -1,7 +1,8 @@
 from lafontaine.parser.scene import Scene
 from lafontaine.parser.frame import Frame
+from feature_detector.feature_director import FeatureDirector
 from lafontaine.parser.video_stats import VideoStats
-from moviepy.editor import *
+from moviepy.editor import VideoFileClip
 
 
 class VideoParser:
@@ -11,7 +12,7 @@ class VideoParser:
         self.duration = self.video.duration
         self.video_stats = VideoStats(self.video.fps, self.video.w, self.video.h)
 
-    def get_scenes(self, feature_director):
+    def get_scenes(self, feature_director: FeatureDirector):
         scenes = []
         current_scene = None
 
@@ -28,7 +29,7 @@ class VideoParser:
             print(f"Processing frame at {t}. {percent:.2f}%")
 
             frame = Frame(video_frame, audio_frame, 0)
-            result = feature_director.check_for_image_features(frame)
+            result = feature_director.check_for_all_features(frame)
 
             if result:
                 if current_scene is None:
