@@ -1,6 +1,5 @@
 class VideoStats:
-    def __init__(self, fps, width, height, frame_count):
+    def __init__(self, fps, width, height):
         self.fps = fps
         self.width = width
         self.height = height
-        self.frame_count = frame_count
