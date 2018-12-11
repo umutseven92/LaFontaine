@@ -1,5 +1,5 @@
-from feature_detector.image.face_recognizer import FaceRecognizer
-from feature_detector.sound.sound_peak_detector import SoundPeakDetector
+from feature_detector.feature_result import FeatureResult
+from typing import Optional
 
 
 class FeatureDirector:
@@ -16,42 +16,38 @@ class FeatureDirector:
         self.__sound_features = sound_features
         self.__subtitle_features = subtitle_features
 
-    @classmethod
-    def default_features(cls):
-        return cls([FaceRecognizer(2)], [SoundPeakDetector()], [])
-
-    def check_for_all_features(self, frame):
+    def check_for_all_features(self, frame) -> Optional[FeatureResult]:
         image_features = self.check_for_image_features(frame)
 
         if image_features:
-            return True
+            return image_features
 
         audio_features = self.check_for_audio_features(frame)
 
         if audio_features:
-            return True
+            return audio_features
 
         subtitle_features = self.check_for_subtitle_features(frame)
 
         if subtitle_features:
-            return True
+            return subtitle_features
 
-        return False
+        return None
 
     def check_for_image_features(self, frame):
-        return self.__check_for_features(frame, self.__image_features)
+        return self._check_for_features(frame, self.__image_features)
 
     def check_for_audio_features(self, frame):
-        return self.__check_for_features(frame, self.__sound_features)
+        return self._check_for_features(frame, self.__sound_features)
 
     def check_for_subtitle_features(self, frame):
-        return self.__check_for_features(frame, self.__subtitle_features)
+        return self._check_for_features(frame, self.__subtitle_features)
 
-    def __check_for_features(self, frame, feature_list):
+    def _check_for_features(self, frame, feature_list) -> Optional[FeatureResult]:
         for f in feature_list:
-            result = f.check_feature(frame)
+            result: FeatureResult = f.check_feature(frame)
 
-            if result:
-                return True
+            if result.result:
+                return result
 
-        return False
+        return None

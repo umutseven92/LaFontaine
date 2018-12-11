@@ -15,6 +15,8 @@ class VideoParser:
     def get_scenes(self, feature_director: FeatureDirector):
         scenes = []
         current_scene = None
+        countdown = None
+        recording = False
 
         step = 0.1
         for t in range(int(self.duration / step)):
@@ -25,21 +27,29 @@ class VideoParser:
             audio_frame = self.audio.get_frame(t)
             video_frame = self.video.get_frame(t)
 
-            percent = (100/self.duration) * t
-            print(f"Processing frame at {t}. {percent:.2f}%")
+            percent = (100 / self.duration) * t
+            print(f"Processing frame at {t:.2f}. {percent:.2f}%")
 
-            frame = Frame(video_frame, audio_frame, 0)
+            frame = Frame(video_frame, audio_frame)
+
             result = feature_director.check_for_all_features(frame)
 
-            if result:
-                if current_scene is None:
-                    current_scene = Scene()
+            if countdown and countdown < 0:
+                recording = False
+                scenes.append(current_scene)
+                current_scene = None
+                countdown = None
 
+            if recording:
                 current_scene.add_frame(frame)
+                countdown -= 1
             else:
-                if current_scene is not None:
-                    scenes.append(current_scene)
-                    current_scene = None
+                if result and result.result is True:
+                    if current_scene is None:
+                        current_scene = Scene()
+                    recording = True
+                    countdown = result.frames
+                    current_scene.add_frame(frame)
 
         if current_scene is not None:
             scenes.append(current_scene)

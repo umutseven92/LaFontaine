@@ -2,7 +2,7 @@
 import argparse
 import time
 import pathlib
-
+import os
 from feature_detector.image.face_recognizer import FaceRecognizer
 from feature_detector.sound.sound_peak_detector import SoundPeakDetector
 from lafontaine.feature_detector.feature_director import FeatureDirector
@@ -25,7 +25,7 @@ start = time.time()
 print('Started processing..')
 
 feature_director = FeatureDirector(sound_features=[SoundPeakDetector(path_to_video)])
-#feature_director = FeatureDirector(image_features=[FaceRecognizer(2)])
+#feature_director = FeatureDirector(image_features=[FaceRecognizer(1)])
 
 # Parse scenes
 scenes = video_parser.get_scenes(feature_director)
@@ -36,11 +36,12 @@ print(f'Finished processing. Took {end - start} seconds.')
 # Generator
 video_generator = VideoGenerator()
 
-pathlib.Path('out/').mkdir(exist_ok=True)
+video_name = os.path.basename(path_to_video)
+pathlib.Path(f'out/{video_name}').mkdir(exist_ok=True)
 
 count = 0
 for s in scenes:
-    video_generator.generate_from_scene(s, f'out/scene{count}.mp4', video_stats.fps)
+    video_generator.generate_from_scene(s, f'out/{video_name}/scene{count}.mp4', video_stats.fps)
     count += 1
 
 """
