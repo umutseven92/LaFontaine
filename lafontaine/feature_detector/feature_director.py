@@ -1,4 +1,4 @@
-from feature_detector.feature_result import FeatureResult
+from lafontaine.feature_detector.feature_result import FeatureResult
 from typing import Optional
 
 

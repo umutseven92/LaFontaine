@@ -1,6 +1,6 @@
 from lafontaine.parser.scene import Scene
 from lafontaine.parser.frame import Frame
-from feature_detector.feature_director import FeatureDirector
+from lafontaine.feature_detector.feature_director import FeatureDirector
 from lafontaine.parser.video_stats import VideoStats
 from moviepy.editor import VideoFileClip
 

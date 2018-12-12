@@ -3,8 +3,8 @@ import argparse
 import time
 import pathlib
 import os
-from feature_detector.image.face_recognizer import FaceRecognizer
-from feature_detector.sound.sound_peak_detector import SoundPeakDetector
+from lafontaine.feature_detector.image.face_recognizer import FaceRecognizer
+from lafontaine.feature_detector.sound.sound_peak_detector import SoundPeakDetector
 from lafontaine.feature_detector.feature_director import FeatureDirector
 from lafontaine.generator.video_generator import VideoGenerator
 from lafontaine.parser.video_parser import VideoParser
@@ -14,6 +14,7 @@ parser.add_argument('-f', '--file', help='Path for the video', required=True)
 args = vars(parser.parse_args())
 
 path_to_video = args['file']
+
 
 # Parsers
 video_parser = VideoParser(path_to_video)

@@ -1,6 +1,6 @@
-from feature_detector.feature import Feature
-from feature_detector.feature_result import FeatureResult
-from parser.frame import Frame
+from lafontaine.feature_detector.feature import Feature
+from lafontaine.feature_detector.feature_result import FeatureResult
+from lafontaine.parser.frame import Frame
 from moviepy.editor import AudioFileClip
 import numpy
 

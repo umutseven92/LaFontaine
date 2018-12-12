@@ -3,7 +3,7 @@ from moviepy.audio.io.AudioFileClip import AudioFileClip
 from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
 import numpy as np
 
-from parser.frame import Frame
+from lafontaine.parser.frame import Frame
 from typing import List
 import os
 

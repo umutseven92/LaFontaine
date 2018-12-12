@@ -1,5 +1,5 @@
 import abc
-from feature_detector.feature_result import FeatureResult
+from lafontaine.feature_detector.feature_result import FeatureResult
 
 
 class Feature(abc.ABC):
