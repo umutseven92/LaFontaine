@@ -18,19 +18,13 @@ class VideoParser:
         countdown = None
         recording = False
 
-        step = 0.1
-        for t in range(int(self.duration / step)):
-            t = t * step
-            if t > self.audio.duration or t > self.duration:
-                break
-
+        for t, raw_img in self.video.iter_frames(with_times=True):
             audio_frame = self.audio.get_frame(t)
-            video_frame = self.video.get_frame(t)
 
             percent = (100 / self.duration) * t
             print(f"Processing frame at {t:.2f}. {percent:.2f}%")
 
-            frame = Frame(video_frame, audio_frame)
+            frame = Frame(raw_img, audio_frame, t)
 
             result = feature_director.check_for_all_features(frame)
 

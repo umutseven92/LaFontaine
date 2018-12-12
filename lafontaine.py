@@ -33,8 +33,10 @@ scenes = video_parser.get_scenes(feature_director)
 end = time.time()
 print(f'Finished processing. Took {end - start} seconds.')
 
+print(f'Found {len(scenes)} scenes.')
+
 # Generator
-video_generator = VideoGenerator()
+video_generator = VideoGenerator(path_to_video)
 
 video_name = os.path.basename(path_to_video)
 pathlib.Path(f'out/{video_name}').mkdir(exist_ok=True)

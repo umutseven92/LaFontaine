@@ -11,15 +11,15 @@ class SoundPeakDetector(Feature):
 
     def __init__(self, path_to_video):
         audioclip = AudioFileClip(path_to_video)
-        self.average_level = self._get_average_sound_level(audioclip.to_soundarray(nbytes=4, buffersize=1000, fps=audioclip.fps))
+        self.average_level = self._get_average_sound_level(audioclip.to_soundarray())
 
     def _get_average_sound_level(self, sound_array: numpy.ndarray):
-        mean = sound_array.mean()
+        mean = numpy.sqrt((sound_array*1.0)**2).mean()
         return mean
 
     def check_feature(self, frame: Frame):
         frame_mean = numpy.sqrt((frame.audio*1.0)**2).mean()
-        result = frame_mean > 0.4
+        result = frame_mean > 0.25
         if result:  # We have to do this because numpy bool_ is True will return false
             return FeatureResult(True, self.RESULT_FRAMES, self.FEATURE_ID)
         else:
