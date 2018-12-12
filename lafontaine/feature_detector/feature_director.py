@@ -1,6 +1,8 @@
 from lafontaine.feature_detector.feature_result import FeatureResult
 from typing import Optional
 
+from parser.frame import Frame
+
 
 class FeatureDirector:
 
@@ -40,8 +42,10 @@ class FeatureDirector:
     def check_for_audio_features(self, frame):
         return self._check_for_features(frame, self.__sound_features)
 
-    def check_for_subtitle_features(self, frame):
-        return self._check_for_features(frame, self.__subtitle_features)
+    def check_for_subtitle_features(self, frame: Frame):
+        if frame.sub:
+            return self._check_for_features(frame, self.__subtitle_features)
+        return None
 
     def _check_for_features(self, frame, feature_list) -> Optional[FeatureResult]:
         for f in feature_list:

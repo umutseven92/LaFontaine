@@ -1,15 +1,23 @@
+from pysrt import SubRipFile
+
 from lafontaine.parser.scene import Scene
 from lafontaine.parser.frame import Frame
 from lafontaine.feature_detector.feature_director import FeatureDirector
 from lafontaine.parser.video_stats import VideoStats
 from moviepy.editor import VideoFileClip
+import pysrt
 
 
 class VideoParser:
-    def __init__(self, video_path):
+
+    def __init__(self, video_path, srt_path):
         self.video = VideoFileClip(video_path)
         self.audio = self.video.audio
         self.duration = self.video.duration
+
+        if srt_path:
+            self.subs: SubRipFile = pysrt.open(srt_path, encoding='iso-8859-1')
+
         self.video_stats = VideoStats(self.video.fps, self.video.w, self.video.h)
 
     def get_scenes(self, feature_director: FeatureDirector):
@@ -22,9 +30,12 @@ class VideoParser:
             audio_frame = self.audio.get_frame(t)
 
             percent = (100 / self.duration) * t
-            print(f"Processing frame at {t:.2f}. {percent:.2f}%")
 
-            frame = Frame(raw_img, audio_frame, t)
+            if self.subs:
+                sub = self.subs.at(seconds=t)
+                frame = Frame(raw_img, audio_frame, t, sub)
+            else:
+                frame = Frame(raw_img, audio_frame, t)
 
             result = feature_director.check_for_all_features(frame)
 
@@ -44,6 +55,9 @@ class VideoParser:
                     recording = True
                     countdown = result.frames
                     current_scene.add_frame(frame)
+
+            info = f'Processed frame at {t:.2f}. {percent:.2f}% {result.feature}' if recording else f'Processed frame at {t:.2f}. {percent:.2f}%'
+            print(info)
 
         if current_scene is not None:
             scenes.append(current_scene)
