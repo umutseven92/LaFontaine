@@ -23,6 +23,7 @@ pox==0.2.4
 ppft==1.6.4.8
 py==1.7.0
 pydub==0.23.0
+pysrt==1.1.1
 pytest==4.0.1
 requests==2.20.1
 six==1.11.0
