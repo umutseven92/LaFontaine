@@ -1,4 +1,5 @@
 import json
+from datetime import timedelta
 
 from feature_detector.feature_director import FeatureDirector
 from feature_detector.image.face_recognizer import FaceRecognizer
@@ -14,6 +15,8 @@ class ConfigParser:
 
         loaded = json.loads(config)
         features = loaded['features']
+        genre = loaded['genre']
+        max_length = int(loaded['max_length'])
 
         for feature in features:
             feature_id = feature['id']
@@ -39,5 +42,5 @@ class ConfigParser:
                 frames = feature['frames']
                 all_features.append(SubtitleIntensityDetector(intensity_char, char_count, frames))
 
-        director = FeatureDirector(all_features)
+        director = FeatureDirector(genre, timedelta(seconds=max_length), all_features)
         return director

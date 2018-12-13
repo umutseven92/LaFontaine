@@ -22,7 +22,7 @@ path_to_sub = args['sub']
 # Parsers
 config_contents = Path(path_to_config).read_text()
 
-feature_director = ConfigParser.get_director_from_config(config_contents)
+director = ConfigParser.get_director_from_config(config_contents)
 
 video_parser = VideoParser(path_to_video, path_to_sub)
 
@@ -33,20 +33,16 @@ start = time.time()
 print('Started processing..')
 
 # Process scenes
-scenes = video_parser.get_scenes(feature_director)
+scenes = video_parser.get_scenes(director)
 
 end = time.time()
-print(f'Finished processing. Took {end - start} seconds.')
 
+print(f'Finished processing. Took {end - start} seconds.')
 print(f'Found {len(scenes)} scenes.')
 
 # Generator
-video_generator = VideoGenerator(path_to_video)
-
 video_name = os.path.basename(path_to_video)
-pathlib.Path(f'out/{video_name}').mkdir(exist_ok=True)
+base_path = f'out/{video_name}'
+pathlib.Path(base_path).mkdir(exist_ok=True)
 
-count = 0
-for s in scenes:
-    video_generator.generate_from_scene(s, f'out/{video_name}/scene{count}.mp4', video_stats.fps)
-    count += 1
+video_generator = VideoGenerator(path_to_video, director.max_length, f'{base_path}/{video_name}_trailer.mp4')
