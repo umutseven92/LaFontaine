@@ -7,7 +7,7 @@ from lafontaine.generator.video_generator import VideoGenerator
 from lafontaine.parser.video_parser import VideoParser
 from pathlib import Path
 
-from parser.config_parser import ConfigParser
+from lafontaine.parser.config_parser import ConfigParser
 
 parser = argparse.ArgumentParser(description='Generate trailers from movies')
 parser.add_argument('-f', '--file', help='Path for the video', required=True)

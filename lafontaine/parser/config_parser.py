@@ -1,11 +1,11 @@
 import json
 from datetime import timedelta
 
-from feature_detector.feature_director import FeatureDirector
-from feature_detector.image.face_recognizer import FaceRecognizer
-from feature_detector.sound.sound_peak_detector import SoundPeakDetector
-from feature_detector.subtitle.subtitle_density_detector import SubtitleDensityDetector
-from feature_detector.subtitle.subtitle_intensity_detector import SubtitleIntensityDetector
+from lafontaine.feature_detector.feature_director import FeatureDirector
+from lafontaine.feature_detector.image.face_recognizer import FaceRecognizer
+from lafontaine.feature_detector.sound.sound_peak_detector import SoundPeakDetector
+from lafontaine.feature_detector.subtitle.subtitle_density_detector import SubtitleDensityDetector
+from lafontaine.feature_detector.subtitle.subtitle_intensity_detector import SubtitleIntensityDetector
 
 
 class ConfigParser:

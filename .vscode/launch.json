@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/lafontaine.py",
             "cwd": "${workspaceRoot}",
-            "args": ["-f", "res/videos/gunshot.mp4"],
+            "args": ["-f", "res/videos/gunshot.mp4", "-c", "res/config/action.json"],
             "console": "integratedTerminal"
         },
     ]

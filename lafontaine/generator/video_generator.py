@@ -7,7 +7,7 @@ from lafontaine.parser.frame import Frame
 from typing import List
 import os
 
-from parser.scene import Scene
+from lafontaine.parser.scene import Scene
 
 
 class VideoGenerator:
