@@ -3,14 +3,14 @@
   "max_length": "120",
   "features": [
     {
+      "id": "SoundPeakDetector",
+      "audio_threshold": 0.50,
+      "frames": 50
+    },
+    {
       "id": "FaceRecognizer",
       "face_count": 2,
       "frames": 100
-    },
-    {
-      "id": "SoundPeakDetector",
-      "audio_threshold": 0.25,
-      "frames": 50
     },
     {
       "id": "SubtitleDensityDetector",

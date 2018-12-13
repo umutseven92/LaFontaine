@@ -46,3 +46,4 @@ base_path = f'out/{video_name}'
 pathlib.Path(base_path).mkdir(exist_ok=True)
 
 video_generator = VideoGenerator(path_to_video, director.max_length, f'{base_path}/{video_name}_trailer.mp4')
+video_generator.generate_from_scenes(scenes, video_stats.fps)

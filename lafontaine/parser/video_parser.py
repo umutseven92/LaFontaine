@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pysrt import SubRipFile
 
 from lafontaine.parser.scene import Scene
@@ -16,7 +18,9 @@ class VideoParser:
         self.duration = self.video.duration
 
         if srt_path:
-            self.subs: SubRipFile = pysrt.open(srt_path, encoding='iso-8859-1')
+            self.subs: Optional[SubRipFile] = pysrt.open(srt_path, encoding='iso-8859-1')
+        else:
+            self.subs = None
 
         self.video_stats = VideoStats(self.video.fps, self.video.w, self.video.h)
 
@@ -50,13 +54,14 @@ class VideoParser:
                 countdown -= 1
             else:
                 if result and result.result is True:
+                    print(f'Activating {result.feature} for {result.frames} frames.')
                     if current_scene is None:
                         current_scene = Scene()
                     recording = True
                     countdown = result.frames
                     current_scene.add_frame(frame)
 
-            info = f'Processed frame at {t:.2f}. {percent:.2f}% {result.feature}' if recording else f'Processed frame at {t:.2f}. {percent:.2f}%'
+            info = f'Processed frame at {t:.2f}. {percent:.2f}%'
             print(info)
 
         if current_scene is not None:
