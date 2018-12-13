@@ -13,18 +13,20 @@ parser = argparse.ArgumentParser(description='Generate trailers from movies')
 parser.add_argument('-f', '--file', help='Path for the video', required=True)
 parser.add_argument('-c', '--config', help='Path for the configuration', required=True)
 parser.add_argument('-s', '--sub', help='Path for the subtitle', required=False)
+parser.add_argument('-d', '--downscale', help='Downscale the movie for better performance', required=False)
 args = vars(parser.parse_args())
 
 path_to_video = args['file']
 path_to_config = args['config']
 path_to_sub = args['sub']
+optimize = args['downscale']
 
 # Parsers
 config_contents = Path(path_to_config).read_text()
 
 director = ConfigParser.get_director_from_config(config_contents)
 
-video_parser = VideoParser(path_to_video, path_to_sub)
+video_parser = VideoParser(path_to_video, path_to_sub, optimize)
 
 video_stats = video_parser.video_stats
 print(f'Loaded {video_stats.width}x{video_stats.height} video with {video_stats.fps} FPS.')

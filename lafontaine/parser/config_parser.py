@@ -1,6 +1,7 @@
 import json
 from datetime import timedelta
 
+from lafontaine.feature_detector.subtitle.subtitle_conversation_count import SubtitleConversationCount
 from lafontaine.feature_detector.feature_director import FeatureDirector
 from lafontaine.feature_detector.image.face_recognizer import FaceRecognizer
 from lafontaine.feature_detector.sound.sound_peak_detector import SoundPeakDetector
@@ -41,6 +42,11 @@ class ConfigParser:
                 intensity_char = feature['intensity_char']
                 frames = feature['frames']
                 all_features.append(SubtitleIntensityDetector(intensity_char, char_count, frames))
+
+            elif feature_id == 'SubtitleConversationCount':
+                conversation_count = feature['conversation_count']
+                frames = feature['frames']
+                all_features.append(SubtitleConversationCount(conversation_count, frames))
 
         director = FeatureDirector(genre, timedelta(seconds=max_length), all_features)
         return director

@@ -1,0 +1,11 @@
+{
+  "genre": "action",
+  "max_length": "120",
+  "features": [
+    {
+      "id": "SoundPeakDetector",
+      "audio_threshold": 0.3,
+      "frames": 50
+    }
+  ]
+}

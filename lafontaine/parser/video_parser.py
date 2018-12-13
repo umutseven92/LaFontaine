@@ -12,8 +12,12 @@ import pysrt
 
 class VideoParser:
 
-    def __init__(self, video_path, srt_path):
+    def __init__(self, video_path, srt_path, downscale):
         self.video = VideoFileClip(video_path)
+
+        if downscale:
+            self.video = self.video.resize(height=int(downscale))
+
         self.audio = self.video.audio
         self.duration = self.video.duration
 
