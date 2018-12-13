@@ -1,0 +1,27 @@
+{
+  "genre": "action",
+  "max_length": "120",
+  "features": [
+    {
+      "id": "FaceRecognizer",
+      "face_count": 2,
+      "frames": 100
+    },
+    {
+      "id": "SoundPeakDetector",
+      "audio_threshold": 0.25,
+      "frames": 50
+    },
+    {
+      "id": "SubtitleDensityDetector",
+      "char_count": 60,
+      "frames": 100
+    },
+    {
+      "id": "SubtitleIntensityDetector",
+      "intensity_char": "!",
+      "char_count": 3,
+      "frames": 100
+    }
+  ]
+}

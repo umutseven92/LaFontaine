@@ -1,7 +1,7 @@
-from moviepy.audio.AudioClip import AudioArrayClip
+from datetime import timedelta
+
 from moviepy.audio.io.AudioFileClip import AudioFileClip
 from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
-import numpy as np
 
 from lafontaine.parser.frame import Frame
 from typing import List
@@ -9,8 +9,9 @@ import os
 
 
 class VideoGenerator:
-    def __init__(self, path_to_video):
+    def __init__(self, path_to_video, max_length: timedelta):
         self.audio = AudioFileClip(path_to_video)
+        self.max_length = max_length
 
     def generate_from_scene(self, scene, path, fps):
         if os.path.exists(path):

@@ -4,12 +4,12 @@ from lafontaine.feature_detector.feature_result import FeatureResult
 
 
 class FaceRecognizer(Feature):
-    RESULT_FRAMES = 100
     FEATURE_ID = 'FaceRecognizer'
 
-    def __init__(self, face_count):
+    def __init__(self, face_count, frames):
         self.face_count = face_count
+        self.frames = frames
 
     def check_feature(self, frame):
         face_locations = face_recognition.face_locations(frame.image)
-        return FeatureResult(len(face_locations) >= self.face_count, self.RESULT_FRAMES, self.FEATURE_ID)
+        return FeatureResult(len(face_locations) >= self.face_count, self.frames, self.FEATURE_ID)
