@@ -14,12 +14,14 @@ parser.add_argument('-f', '--file', help='Path for the video', required=True)
 parser.add_argument('-c', '--config', help='Path for the configuration', required=True)
 parser.add_argument('-s', '--sub', help='Path for the subtitle', required=False)
 parser.add_argument('-d', '--downscale', help='Downscale the movie for better performance', required=False)
+parser.add_argument('-t', '--title', help='Title screen in the end', required=False)
 args = vars(parser.parse_args())
 
 path_to_video = args['file']
 path_to_config = args['config']
 path_to_sub = args['sub']
 optimize = args['downscale']
+title = args['title']
 
 # Parsers
 config_contents = Path(path_to_config).read_text()
@@ -47,5 +49,5 @@ video_name = os.path.basename(path_to_video)
 base_path = f'out/{video_name}'
 pathlib.Path(base_path).mkdir(exist_ok=True)
 
-video_generator = VideoGenerator(path_to_video, director.max_length, f'{base_path}/{video_name}_trailer.mp4')
+video_generator = VideoGenerator(path_to_video, director.max_length, f'{base_path}/{video_name}_trailer.mp4', title)
 video_generator.generate_from_scenes(scenes, video_stats.fps)

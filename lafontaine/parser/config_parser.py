@@ -1,6 +1,7 @@
 import json
 from datetime import timedelta
 
+from lafontaine.feature_detector.image.color_counter import ColorCounter
 from lafontaine.feature_detector.subtitle.subtitle_conversation_count import SubtitleConversationCount
 from lafontaine.feature_detector.feature_director import FeatureDirector
 from lafontaine.feature_detector.image.face_recognizer import FaceRecognizer
@@ -26,6 +27,11 @@ class ConfigParser:
                 face_count = feature['face_count']
                 frames = feature['frames']
                 all_features.append(FaceRecognizer(face_count, frames))
+
+            elif feature_id == 'ColorCounter':
+                color_count = feature['color_count']
+                frames = feature['frames']
+                all_features.append(ColorCounter(color_count, frames))
 
             elif feature_id == 'SoundPeakDetector':
                 audio_threshold = feature['audio_threshold']

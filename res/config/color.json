@@ -1,0 +1,11 @@
+{
+  "genre": "action",
+  "max_length": "120",
+  "features": [
+    {
+      "id": "ColorCounter",
+      "color_count": 50000,
+      "frames": 100
+    }
+  ]
+}

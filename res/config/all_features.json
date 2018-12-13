@@ -11,6 +11,11 @@
       "frames": 100
     },
     {
+      "id": "ColorCounter",
+      "color_count": 50000,
+      "frames": 100
+    },
+    {
       "id": "SubtitleDensityDetector",
       "char_count": 60,
       "frames": 100
