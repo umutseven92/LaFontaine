@@ -5,6 +5,9 @@ class Scene:
     def add_frame(self, frame):
         self.frames.append(frame)
 
+    def add_frames(self, frames):
+        self.frames.extend(frames)
+
     def start_ts(self):
         return self.frames[0].timestamp
 

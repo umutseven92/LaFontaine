@@ -47,23 +47,32 @@ class VideoParser:
 
             result = feature_director.check_for_all_features(frame)
 
-            if countdown and countdown < 0:
+            if result and result.result and result.candidate_frames:
+                scene = Scene()
+                scene.add_frames(result.candidate_frames)
+                scenes.append(scene)
+
                 recording = False
-                scenes.append(current_scene)
                 current_scene = None
                 countdown = None
-
-            if recording:
-                current_scene.add_frame(frame)
-                countdown -= 1
             else:
-                if result and result.result is True:
-                    print(f'Activating {result.feature} for {result.frames} frames.')
-                    if current_scene is None:
-                        current_scene = Scene()
-                    recording = True
-                    countdown = result.frames
+                if countdown and countdown < 0:
+                    recording = False
+                    scenes.append(current_scene)
+                    current_scene = None
+                    countdown = None
+
+                if recording:
                     current_scene.add_frame(frame)
+                    countdown -= 1
+                else:
+                    if result and result.result is True:
+                        print(f'Activating {result.feature} for {result.frames} frames.')
+                        if current_scene is None:
+                            current_scene = Scene()
+                        recording = True
+                        countdown = result.frames
+                        current_scene.add_frame(frame)
 
             info = f'Processed frame at {t:.2f}. {percent:.2f}%'
             print(info)

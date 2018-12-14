@@ -12,4 +12,14 @@ select three features for sound, three features from frame(image) and three feat
 Apply at least two machine learning algorithms for classification of scenes. Combine important
 scenes into one video which is the trailer.
 
+## Etymology
+LaFontaine is named after the legendary [Don LaFontaine](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=11&cad=rja&uact=8&ved=2ahUKEwjQlZuukp_fAhUHAhAIHWVCBhgQFjAKegQIDBAB&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FDon_LaFontaine&usg=AOvVaw2YIu6qpVzQw3Gy-5dWpWdK), who was the voice of more than 5000 movie trailers. 
+He is the voice in the classic phrase "In a world...".
+
 ## Features Selected
+
+## Usage
+
+## Dependencies
+
+* ImageMagick is required to create end titles.

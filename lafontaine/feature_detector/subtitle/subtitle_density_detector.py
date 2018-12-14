@@ -1,5 +1,5 @@
-from lafontaine.feature_detector.feature_result import FeatureResult
-from lafontaine.feature_detector.feature import Feature
+from lafontaine.feature_detector.feature_result.feature_result import FeatureResult
+from lafontaine.feature_detector.feature.feature import Feature
 from lafontaine.parser.frame import Frame
 
 

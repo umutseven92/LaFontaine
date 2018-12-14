@@ -8,13 +8,15 @@
       "frames": 50
     },
     {
-      "id": "FaceRecognizer",
-      "face_count": 3,
-      "frames": 100
+      "id": "FrameDeltaDetector",
+      "delta": 0.99,
+      "frame_limit": 50,
+      "scene_change_limit": 3,
+      "frames": 75
     },
     {
-      "id": "SubtitleDensityDetector",
-      "char_count": 60,
+      "id": "FaceRecognizer",
+      "face_count": 3,
       "frames": 100
     },
     {

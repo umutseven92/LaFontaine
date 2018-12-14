@@ -11,6 +11,13 @@
       "frames": 100
     },
     {
+      "id": "FrameDeltaDetector",
+      "delta": 3,
+      "frame_limit": 50,
+      "scene_change_limit": 3,
+      "frames": 75
+    },
+    {
       "id": "ColorCounter",
       "color_count": 50000,
       "frames": 100
