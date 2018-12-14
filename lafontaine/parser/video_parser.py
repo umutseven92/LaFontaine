@@ -47,7 +47,7 @@ class VideoParser:
 
             result = feature_director.check_for_all_features(frame)
 
-            if result and result.result and result.candidate_frames:
+            if result and result.result and hasattr(result, 'candidate_frames') and result.candidate_frames:
                 scene = Scene()
                 scene.add_frames(result.candidate_frames)
                 scenes.append(scene)
