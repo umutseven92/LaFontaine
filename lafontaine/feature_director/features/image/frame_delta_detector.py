@@ -1,8 +1,8 @@
-from lafontaine.feature_detector.feature.continuous_feature import ContinuousFeature
-from lafontaine.feature_detector.feature_result.continuous_frame_result import ContinuousFrameResult
 import numpy as np
 
-from lafontaine.parser.frame import Frame
+from lafontaine.feature_director.feature.continuous_feature import ContinuousFeature
+from lafontaine.feature_director.feature_result.continuous_frame_result import ContinuousFrameResult
+from lafontaine.helpers.frame import Frame
 
 
 class FrameDeltaDetector(ContinuousFeature):
@@ -58,4 +58,3 @@ class FrameDeltaDetector(ContinuousFeature):
 
         self.previous_frame = frame
         return ContinuousFrameResult(False, self.frames, self.feature_id, self.candidate_frames)
-

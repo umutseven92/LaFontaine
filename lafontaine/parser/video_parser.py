@@ -1,13 +1,13 @@
 from typing import Optional
 
+import pysrt
+from moviepy.editor import VideoFileClip
 from pysrt import SubRipFile
 
-from lafontaine.parser.scene import Scene
-from lafontaine.parser.frame import Frame
-from lafontaine.feature_detector.feature_director import FeatureDirector
-from lafontaine.parser.video_stats import VideoStats
-from moviepy.editor import VideoFileClip
-import pysrt
+from lafontaine.feature_director.feature_director import FeatureDirector
+from lafontaine.helpers.frame import Frame
+from lafontaine.helpers.scene import Scene
+from lafontaine.helpers.video_stats import VideoStats
 
 
 class VideoParser:

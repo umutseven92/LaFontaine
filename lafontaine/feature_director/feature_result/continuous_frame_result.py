@@ -1,7 +1,7 @@
 from typing import List
 
-from lafontaine.feature_detector.feature_result.base_feature_result import BaseFeatureResult
-from lafontaine.parser.frame import Frame
+from lafontaine.feature_director.feature_result.base_feature_result import BaseFeatureResult
+from lafontaine.helpers.frame import Frame
 
 
 class ContinuousFrameResult(BaseFeatureResult):

@@ -1,14 +1,14 @@
+import os
 from datetime import timedelta
+from typing import List
 
 from moviepy.audio.io.AudioFileClip import AudioFileClip
+from moviepy.editor import concatenate_videoclips
 from moviepy.video.VideoClip import TextClip
 from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
-from moviepy.editor import concatenate_videoclips
-from lafontaine.parser.frame import Frame
-from typing import List
-import os
 
-from lafontaine.parser.scene import Scene
+from lafontaine.helpers.frame import Frame
+from lafontaine.helpers.scene import Scene
 
 
 class VideoGenerator:
@@ -33,7 +33,8 @@ class VideoGenerator:
 
         if clips:
             if self.title:
-                title_clip = TextClip(self.title, color='white', bg_color='black', fontsize=60, size=(clips[0].w, clips[0].h)).set_duration(5)
+                title_clip = TextClip(self.title, color='white', bg_color='black', fontsize=60,
+                                      size=(clips[0].w, clips[0].h)).set_duration(5)
                 clips.append(title_clip)
 
             trailer = concatenate_videoclips(clips)

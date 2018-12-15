@@ -1,6 +1,7 @@
 import face_recognition
-from lafontaine.feature_detector.feature.single_frame_feature import SingleFrameFeature
-from lafontaine.feature_detector.feature_result.single_frame_feature_result import SingleFrameFeatureResult
+
+from lafontaine.feature_director.feature.single_frame_feature import SingleFrameFeature
+from lafontaine.feature_director.feature_result.single_frame_feature_result import SingleFrameFeatureResult
 
 
 class FaceRecognizer(SingleFrameFeature):

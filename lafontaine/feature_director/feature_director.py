@@ -1,7 +1,7 @@
 from datetime import timedelta
-
-from lafontaine.feature_detector.feature_result.single_frame_feature_result import SingleFrameFeatureResult
 from typing import Optional
+
+from lafontaine.feature_director.feature_result.single_frame_feature_result import SingleFrameFeatureResult
 
 
 class FeatureDirector:

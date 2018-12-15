@@ -1,15 +1,15 @@
 import json
 from datetime import timedelta
 
-from lafontaine.feature_detector.sound.high_volume_detector import HighVolumeDetector
-from lafontaine.feature_detector.image.frame_delta_detector import FrameDeltaDetector
-from lafontaine.feature_detector.image.color_counter import ColorCounter
-from lafontaine.feature_detector.subtitle.subtitle_conversation_count import SubtitleConversationCount
-from lafontaine.feature_detector.feature_director import FeatureDirector
-from lafontaine.feature_detector.image.face_recognizer import FaceRecognizer
-from lafontaine.feature_detector.sound.sound_peak_detector import SoundPeakDetector
-from lafontaine.feature_detector.subtitle.subtitle_density_detector import SubtitleDensityDetector
-from lafontaine.feature_detector.subtitle.subtitle_intensity_detector import SubtitleIntensityDetector
+from lafontaine.feature_director.feature_director import FeatureDirector
+from lafontaine.feature_director.features.image.color_counter import ColorCounter
+from lafontaine.feature_director.features.image.face_recognizer import FaceRecognizer
+from lafontaine.feature_director.features.image.frame_delta_detector import FrameDeltaDetector
+from lafontaine.feature_director.features.sound.high_volume_detector import HighVolumeDetector
+from lafontaine.feature_director.features.sound.sound_peak_detector import SoundPeakDetector
+from lafontaine.feature_director.features.subtitle.subtitle_conversation_count import SubtitleConversationCount
+from lafontaine.feature_director.features.subtitle.subtitle_density_detector import SubtitleDensityDetector
+from lafontaine.feature_director.features.subtitle.subtitle_intensity_detector import SubtitleIntensityDetector
 
 
 class ConfigParser:

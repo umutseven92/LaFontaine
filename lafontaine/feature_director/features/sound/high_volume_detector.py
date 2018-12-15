@@ -1,7 +1,7 @@
-from lafontaine.feature_detector.feature.continuous_feature import ContinuousFeature
-from lafontaine.feature_detector.feature_result.continuous_frame_result import ContinuousFrameResult
-
 import numpy as np
+
+from lafontaine.feature_director.feature.continuous_feature import ContinuousFeature
+from lafontaine.feature_director.feature_result.continuous_frame_result import ContinuousFrameResult
 
 
 class HighVolumeDetector(ContinuousFeature):

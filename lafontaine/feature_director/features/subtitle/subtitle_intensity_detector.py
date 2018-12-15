@@ -1,6 +1,6 @@
-from lafontaine.feature_detector.feature_result.single_frame_feature_result import SingleFrameFeatureResult
-from lafontaine.feature_detector.feature.single_frame_feature import SingleFrameFeature
-from lafontaine.parser.frame import Frame
+from lafontaine.feature_director.feature.single_frame_feature import SingleFrameFeature
+from lafontaine.feature_director.feature_result.single_frame_feature_result import SingleFrameFeatureResult
+from lafontaine.helpers.frame import Frame
 
 
 class SubtitleIntensityDetector(SingleFrameFeature):
@@ -16,4 +16,3 @@ class SubtitleIntensityDetector(SingleFrameFeature):
             how_many = sub_text.count(self.intensity_char)
             return SingleFrameFeatureResult(how_many >= self.char_count, self.frames, self.feature_id)
         return SingleFrameFeatureResult(False, self.frames, self.feature_id)
-

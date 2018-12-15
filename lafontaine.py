@@ -1,13 +1,12 @@
 import argparse
-import time
-import pathlib
 import os
-
-from lafontaine.generator.video_generator import VideoGenerator
-from lafontaine.parser.video_parser import VideoParser
+import pathlib
+import time
 from pathlib import Path
 
+from lafontaine.generator.video_generator import VideoGenerator
 from lafontaine.parser.config_parser import ConfigParser
+from lafontaine.parser.video_parser import VideoParser
 
 parser = argparse.ArgumentParser(description='Generate trailers from movies')
 parser.add_argument('-f', '--file', help='Path for the video', required=True)
