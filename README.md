@@ -1,4 +1,4 @@
-# LaFontaine
+# LaFontaine [![Build Status](https://travis-ci.org/umutseven92/LaFontaine.svg?branch=master)](https://travis-ci.org/umutseven92/LaFontaine)
 LaFontaine is a automatic movie trailer generator.
 
 ## Description
