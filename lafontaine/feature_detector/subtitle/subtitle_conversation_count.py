@@ -1,19 +1,19 @@
-from lafontaine.feature_detector.feature_result.feature_result import FeatureResult
-from lafontaine.feature_detector.feature.feature import Feature
+from lafontaine.feature_detector.feature_result.single_frame_feature_result import SingleFrameFeatureResult
+from lafontaine.feature_detector.feature.single_frame_feature import SingleFrameFeature
 from lafontaine.parser.frame import Frame
 
 
-class SubtitleConversationCount(Feature):
-    FEATURE_ID = 'SubtitleConversationCount'
+class SubtitleConversationCount(SingleFrameFeature):
 
     def __init__(self, conversation_count, frames):
         self.conversation_count = conversation_count
         self.frames = frames
+        super().__init__('SubtitleConversationCount')
 
     def check_feature(self, frame: Frame):
         if frame.sub:
             sub_text = frame.sub.text
             how_many = sub_text.count("-")
-            return FeatureResult(how_many >= self.conversation_count, self.frames, self.FEATURE_ID)
-        return FeatureResult(False, self.frames, self.FEATURE_ID)
+            return SingleFrameFeatureResult(how_many >= self.conversation_count, self.frames, self.feature_id)
+        return SingleFrameFeatureResult(False, self.frames, self.feature_id)
 

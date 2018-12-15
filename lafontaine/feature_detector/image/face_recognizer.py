@@ -1,15 +1,15 @@
 import face_recognition
-from lafontaine.feature_detector.feature.feature import Feature
-from lafontaine.feature_detector.feature_result.feature_result import FeatureResult
+from lafontaine.feature_detector.feature.single_frame_feature import SingleFrameFeature
+from lafontaine.feature_detector.feature_result.single_frame_feature_result import SingleFrameFeatureResult
 
 
-class FaceRecognizer(Feature):
-    FEATURE_ID = 'FaceRecognizer'
+class FaceRecognizer(SingleFrameFeature):
 
     def __init__(self, face_count, frames):
         self.face_count = face_count
         self.frames = frames
+        super().__init__('FaceRecognizer')
 
     def check_feature(self, frame):
         face_locations = face_recognition.face_locations(frame.image)
-        return FeatureResult(len(face_locations) >= self.face_count, self.frames, self.FEATURE_ID)
+        return SingleFrameFeatureResult(len(face_locations) >= self.face_count, self.frames, self.feature_id)
