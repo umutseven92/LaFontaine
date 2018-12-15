@@ -19,7 +19,9 @@ He is the voice in the classic phrase "In a world...".
 ## Features Selected
 
 ## Usage
+```bash
+-f res/videos/gunshot.mp4 -c res/config/action.lf -t "North by Northwest"
+```
 
 ## Dependencies
-
 * ImageMagick is required to create end titles.
