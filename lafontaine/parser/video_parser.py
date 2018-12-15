@@ -11,7 +11,6 @@ from lafontaine.helpers.video_stats import VideoStats
 
 
 class VideoParser:
-
     def __init__(self, video_path, srt_path, downscale):
         self.video = VideoFileClip(video_path)
 
