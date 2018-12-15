@@ -7,8 +7,7 @@ class SubtitleConversationCount(SingleFrameFeature):
 
     def __init__(self, conversation_count, frames):
         self.conversation_count = conversation_count
-        self.frames = frames
-        super().__init__('SubtitleConversationCount')
+        super().__init__('SubtitleConversationCount', frames)
 
     def check_feature(self, frame: Frame):
         if frame.sub:

@@ -1,4 +1,4 @@
-from feature_detector.feature_result.base_feature_result import BaseFeatureResult
+from lafontaine.feature_detector.feature_result.base_feature_result import BaseFeatureResult
 
 
 class SingleFrameFeatureResult(BaseFeatureResult):

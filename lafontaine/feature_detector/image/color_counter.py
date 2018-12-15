@@ -9,8 +9,7 @@ class ColorCounter(SingleFrameFeature):
 
     def __init__(self, color_count, frames):
         self.color_count = color_count
-        self.frames = frames
-        super().__init__('ColorCounter')
+        super().__init__('ColorCounter', frames)
 
     def check_feature(self, frame: Frame):
         unique_colors = np.unique(frame.image.reshape(-1, frame.image.shape[2]), axis=0)

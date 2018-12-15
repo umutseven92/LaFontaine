@@ -7,8 +7,7 @@ class SubtitleDensityDetector(SingleFrameFeature):
 
     def __init__(self, char_count, frames):
         self.char_count = char_count
-        self.frames = frames
-        super().__init__('SubtitleDensityDetector')
+        super().__init__('SubtitleDensityDetector', frames)
 
     def check_feature(self, frame: Frame):
         if frame.sub:

@@ -6,6 +6,12 @@
       "frames": 50
     },
     {
+      "id": "HighVolumeDetector",
+      "volume": 0.60,
+      "frame_limit": 50,
+      "frames": 70
+    },
+    {
       "id": "FaceRecognizer",
       "face_count": 3,
       "frames": 100

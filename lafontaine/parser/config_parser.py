@@ -1,6 +1,7 @@
 import json
 from datetime import timedelta
 
+from lafontaine.feature_detector.sound.high_volume_detector import HighVolumeDetector
 from lafontaine.feature_detector.image.frame_delta_detector import FrameDeltaDetector
 from lafontaine.feature_detector.image.color_counter import ColorCounter
 from lafontaine.feature_detector.subtitle.subtitle_conversation_count import SubtitleConversationCount
@@ -25,6 +26,7 @@ class ConfigParser:
             feature_id = feature['id']
             frames = feature['frames']
 
+            # Image Features
             if feature_id == 'FaceRecognizer':
                 face_count = feature['face_count']
                 all_features.append(FaceRecognizer(face_count, frames))
@@ -39,10 +41,17 @@ class ConfigParser:
                 change_limit = feature['scene_change_limit']
                 all_features.append(FrameDeltaDetector(delta, change_limit, frame_limit, frames))
 
+            # Sound Features
             elif feature_id == 'SoundPeakDetector':
                 audio_threshold = feature['audio_threshold']
                 all_features.append(SoundPeakDetector(audio_threshold, frames))
 
+            elif feature_id == 'HighVolumeDetector':
+                volume = feature['volume']
+                frame_limit = feature['frame_limit']
+                all_features.append(HighVolumeDetector(volume, frame_limit, frames))
+
+            # Subtitle Features
             elif feature_id == 'SubtitleDensityDetector':
                 char_count = feature['char_count']
                 all_features.append(SubtitleDensityDetector(char_count, frames))

@@ -7,8 +7,7 @@ class FaceRecognizer(SingleFrameFeature):
 
     def __init__(self, face_count, frames):
         self.face_count = face_count
-        self.frames = frames
-        super().__init__('FaceRecognizer')
+        super().__init__('FaceRecognizer', frames)
 
     def check_feature(self, frame):
         face_locations = face_recognition.face_locations(frame.image)

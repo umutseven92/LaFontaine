@@ -9,7 +9,6 @@ class FrameDeltaDetector(ContinuousFeature):
 
     def __init__(self, delta, frame_change_limit, frame_limit, frames):
         self.delta = delta
-        self.frames = frames
         self.previous_frame = None
         self.counting = False
         self.candidate_frames = []
@@ -17,7 +16,7 @@ class FrameDeltaDetector(ContinuousFeature):
         self.count = frame_limit
         self.frame_change_limit = frame_change_limit
         self.frame_change_amount = frame_change_limit
-        super().__init__('FrameDeltaDetector')
+        super().__init__('FrameDeltaDetector', frames)
 
     def _calculate_delta(self, frame1: Frame, frame2: Frame):
         return np.mean(frame1.image != frame2.image)

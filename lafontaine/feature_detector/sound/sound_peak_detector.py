@@ -8,8 +8,7 @@ class SoundPeakDetector(SingleFrameFeature):
 
     def __init__(self, audio_threshold, frames):
         self.audio_threshold = audio_threshold
-        self.frames = frames
-        super().__init__('SoundPeakDetector')
+        super().__init__('SoundPeakDetector', frames)
 
     def check_feature(self, frame: Frame):
         frame_mean = numpy.sqrt((frame.audio*1.0)**2).mean()

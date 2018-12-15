@@ -31,16 +31,17 @@ class VideoGenerator:
 
             clips.append(clip)
 
-        if self.title:
-            title_clip = TextClip(self.title, color='white', bg_color='black', fontsize=60, size=(clips[0].w, clips[0].h)).set_duration(5)
-            clips.append(title_clip)
+        if clips:
+            if self.title:
+                title_clip = TextClip(self.title, color='white', bg_color='black', fontsize=60, size=(clips[0].w, clips[0].h)).set_duration(5)
+                clips.append(title_clip)
 
-        trailer = concatenate_videoclips(clips)
+            trailer = concatenate_videoclips(clips)
 
-        if os.path.exists(self.out_path):
-            os.remove(self.out_path)
+            if os.path.exists(self.out_path):
+                os.remove(self.out_path)
 
-        trailer.write_videofile(self.out_path)
+            trailer.write_videofile(self.out_path)
 
     def _generate_from_scene(self, scene, fps) -> ImageSequenceClip:
         return self._generate_from_frames(scene.frames, fps)
