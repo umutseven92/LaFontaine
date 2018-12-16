@@ -4,6 +4,7 @@ import pysrt
 from moviepy.editor import VideoFileClip
 from pysrt import SubRipFile
 
+from lafontaine.helpers.feature_types import FeatureType
 from lafontaine.feature_director.feature_director import FeatureDirector
 from lafontaine.helpers.frame import Frame
 from lafontaine.helpers.scene import Scene
@@ -46,7 +47,7 @@ class VideoParser:
 
             result = feature_director.check_for_all_features(frame)
 
-            if result and result.result and hasattr(result, 'candidate_frames') and result.candidate_frames:
+            if result and result.result and result.feature_type == FeatureType.ContinuousFrameFeature and result.candidate_frames:
                 scene = Scene()
                 scene.add_frames(result.candidate_frames)
                 scenes.append(scene)

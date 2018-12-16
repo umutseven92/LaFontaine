@@ -1,7 +1,7 @@
 from datetime import timedelta
 from typing import Optional
 
-from lafontaine.feature_director.feature_result.single_frame_feature_result import SingleFrameFeatureResult
+from lafontaine.feature_director.feature.base_feature import BaseFeature
 
 
 class FeatureDirector:
@@ -11,12 +11,12 @@ class FeatureDirector:
         self.max_length = max_length
         self.all_features = all_features
 
-    def check_for_all_features(self, frame) -> Optional[SingleFrameFeatureResult]:
+    def check_for_all_features(self, frame) -> Optional[BaseFeature]:
         return self._check_for_features(frame)
 
-    def _check_for_features(self, frame) -> Optional[SingleFrameFeatureResult]:
+    def _check_for_features(self, frame):
         for f in self.all_features:
-            result: SingleFrameFeatureResult = f.check_feature(frame)
+            result = f.check_feature(frame)
 
             if result.result:
                 return result
