@@ -12,7 +12,7 @@ There are three features for frame, three features for sound and three features 
 LaFontaine is named after the legendary [Don LaFontaine](https://en.wikipedia.org/wiki/Don_LaFontaine), who was the voice of more than 5000 movie trailers. 
 He is the voice in the classic phrase "In a world...".
 
-## Features
+## All Features
 
 ### Image Features
 
@@ -128,15 +128,41 @@ Configuration files contain list of features and some other metadata. Each genre
 
 Example configuration files are given in the *res/config/* folder, however you can create your own custom configurations.
 
-*res/config/action.lf*
+*res/config/action.lf*:
 ```json
 {
   "genre": "action",
   "max_length": "120",
   "features": [
-    .
-    .
-    (list of features)
+    {
+      "id": "SoundPeakDetector",
+      "audio_threshold": 0.30,
+      "frames": 50
+    },
+    {
+      "id": "FrameDeltaDetector",
+      "delta": 0.95,
+      "frame_limit": 50,
+      "scene_change_limit": 3,
+      "frames": 75
+    },
+    {
+      "id": "HighVolumeDetector",
+      "volume": 0.60,
+      "frame_limit": 50,
+      "frames": 70
+    },
+    {
+      "id": "FaceRecognizer",
+      "face_count": 3,
+      "frames": 100
+    },
+    {
+      "id": "SubtitleIntensityDetector",
+      "intensity_char": "!",
+      "char_count": 3,
+      "frames": 100
+    }
   ]
 }
 ```
