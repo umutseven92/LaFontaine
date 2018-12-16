@@ -14,9 +14,7 @@ Apply at least two machine learning algorithms for classification of scenes. Com
 scenes into one video which is the trailer.
 
 ## Etymology
-LaFontaine is named after the legendary [Don LaFontaine](https://en.wikipedia.org/wiki/Don_LaFontainehttps://en.wikipedia.org/wiki/Don_LaFontaine
-
-), who was the voice of more than 5000 movie trailers. 
+LaFontaine is named after the legendary [Don LaFontaine](https://en.wikipedia.org/wiki/Don_LaFontaine), who was the voice of more than 5000 movie trailers. 
 He is the voice in the classic phrase "In a world...".
 
 ## Features
