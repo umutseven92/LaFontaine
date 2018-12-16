@@ -90,11 +90,35 @@ Records for *frames* amount of frames if audio difference percentage is greater 
 ### Subtitle Features
 
 #### Subtitle Density Detector
+```json
+{
+  "id": "SubtitleDensityDetector",
+  "char_count": 60,
+  "frames": 100
+}
+```
+Records for *frames* amount of frames if the subtitle has more than *char_count* characters.
 
 #### Subtitle Intensity Detector
+```json
+{
+  "id": "SubtitleIntensityDetector",
+  "intensity_char": "!",
+  "char_count": 3,
+  "frames": 100
+}
+```
+Records for *frames* amount of frames if the subtitle has more than *char_count* *intensity_char* characters.
 
 #### Subtitle Conversation Counter
-
+```json
+{
+  "id": "SubtitleConversationCount",
+  "conversation_count": 2,
+  "frames": 100
+}
+```
+Records for *frames* amount of frames if the subtitle has more than *conversation_count* characters speaking.
 
 ## Dependencies
 
@@ -104,6 +128,18 @@ Records for *frames* amount of frames if audio difference percentage is greater 
 
 ## Usage
 ```bash
-python lafontaine.py -f res/videos/gunshot.mp4 -c res/config/action.lf -t "North by Northwest" -d 480 -cd
+python lafontaine.py -f res/videos/northbynorthwest.mp4 -s res/subtitles/northbynorthwest.srt -c res/config/action.lf -t "North by Northwest" -d 480 -cd
 ```
 
+Parameter|Description|Required
+--- | ---| ---
+-f, --file | Path to the video file | True 
+-s, --sub | Path to the subtitle file[^1] | False
+-c, --config | Path to the feature configuration file | True
+-t, --title | What to put on the title card in the end of the trailer | False
+-d, --downscale | Which width to downscale the resolution to[^2]| False
+-cd, --cuda | Enable CUDA support | False
+
+[^1]: If this option is not given, subtitle features will be disabled.
+
+[^2]: Aspect ration will be preserved.
