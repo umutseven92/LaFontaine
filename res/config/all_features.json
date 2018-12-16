@@ -12,6 +12,13 @@
       "frames": 70
     },
     {
+      "id": "SoundDeltaDetector",
+      "delta": 3,
+      "frame_limit": 50,
+      "scene_change_limit": 3,
+      "frames": 75
+    },
+    {
       "id": "FaceRecognizer",
       "face_count": 3,
       "frames": 100

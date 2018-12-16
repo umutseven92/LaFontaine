@@ -1,6 +1,7 @@
 import json
 from datetime import timedelta
 
+from lafontaine.feature_director.features.sound.sound_delta_detector import SoundDeltaDetector
 from lafontaine.feature_director.feature_director import FeatureDirector
 from lafontaine.feature_director.features.image.color_counter import ColorCounter
 from lafontaine.feature_director.features.image.face_recognizer import FaceRecognizer
@@ -50,6 +51,12 @@ class ConfigParser:
                 volume = feature['volume']
                 frame_limit = feature['frame_limit']
                 all_features.append(HighVolumeDetector(volume, frame_limit, frames))
+
+            elif feature_id == 'SoundDeltaDetector':
+                delta = feature['delta']
+                frame_limit = feature['frame_limit']
+                change_limit = feature['scene_change_limit']
+                all_features.append(SoundDeltaDetector(delta, change_limit, frame_limit, frames))
 
             # Subtitle Features
             elif feature_id == 'SubtitleDensityDetector':
