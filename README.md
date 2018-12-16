@@ -134,12 +134,12 @@ python lafontaine.py -f res/videos/northbynorthwest.mp4 -s res/subtitles/northby
 Parameter|Description|Required
 --- | ---| ---
 -f, --file | Path to the video file | True 
--s, --sub | Path to the subtitle file[^1] | False
+-s, --sub | Path to the subtitle file<sup>1</sup> | False
 -c, --config | Path to the feature configuration file | True
 -t, --title | What to put on the title card in the end of the trailer | False
--d, --downscale | Which width to downscale the resolution to[^2]| False
+-d, --downscale | Which width to downscale the resolution to<sup>2</sup>| False
 -cd, --cuda | Enable CUDA support | False
 
-[^1]: If this option is not given, subtitle features will be disabled.
+<sup>1</sup>: If this option is not given, subtitle features will be disabled.
 
-[^2]: Aspect ration will be preserved.
+<sup>2</sup>: Aspect ration will be preserved.
