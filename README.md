@@ -1,5 +1,5 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6b6a32080d154b9b910a804511fcf251)](https://app.codacy.com/app/umutseven92/LaFontaine?utm_source=github.com&utm_medium=referral&utm_content=umutseven92/LaFontaine&utm_campaign=Badge_Grade_Dashboard)
-# LaFontaine [![Build Status](https://travis-ci.org/umutseven92/LaFontaine.svg?branch=master)](https://travis-ci.org/umutseven92/LaFontaine)
+
+# LaFontaine [![Build Status](https://travis-ci.org/umutseven92/LaFontaine.svg?branch=master)](https://travis-ci.org/umutseven92/LaFontaine) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6b6a32080d154b9b910a804511fcf251)](https://app.codacy.com/app/umutseven92/LaFontaine?utm_source=github.com&utm_medium=referral&utm_content=umutseven92/LaFontaine&utm_campaign=Badge_Grade_Dashboard)
 LaFontaine is an automatic movie trailer generator.
 
 ## Description
