@@ -3,15 +3,10 @@
 LaFontaine is an automatic movie trailer generator.
 
 ## Description
->In this project, you are asked to implement a
-software that automatically extract trailer from a given movie with any genre. Firstly, you will
-divide the movie to smaller frames and sound fragments. From these sound and images, you will
-extract distinctive features which indicates the excitement of the fragment. You will classify the
-scenes by using machine learning algorithms. After classification, all scenes that are found
-important will be combined and trailer will be created from these scenes. Mandatory features:
-select three features for sound, three features from frame(image) and three features from subtitle.
-Apply at least two machine learning algorithms for classification of scenes. Combine important
-scenes into one video which is the trailer.
+
+LaFontaine creates movie trailers for any genre using pre-defined features, like number of faces on screen, and loudness of volume. 
+Scenes are extracted using these features and combined to create the final trailer.
+There are three features for frame, three features for sound and three features for subtitles. Features are read from configurations and are fully configurable.
 
 ## Etymology
 LaFontaine is named after the legendary [Don LaFontaine](https://en.wikipedia.org/wiki/Don_LaFontaine), who was the voice of more than 5000 movie trailers. 
@@ -127,6 +122,32 @@ Records for *frames* amount of frames if the subtitle has more than *conversatio
 * ImageMagick is required to create end titles.
 * If CUDA is going to be enabled for better performance, *dlib* needs to be compiled with CUDA support.
 
+## Configuration
+
+Configuration files contain list of features and some other metadata. Each genre has its own configuration file. To create an action movie trailer, you use the *action.lf* file, to create a comedy movie trailer you use *comedy.lf* and vice versa.
+
+Example configuration files are given in the *res/config/* folder, however you can create your own custom configurations.
+
+*res/config/action.lf*
+```json
+{
+  "genre": "action",
+  "max_length": "120",
+  "features": [
+    .
+    .
+    (list of features)
+  ]
+}
+```
+
+Parameter|Description|Required
+--- | ---| ---
+genre | Name of the genre | True 
+max_length | Max length of the trailer in seconds | True
+features | List of features, listed in order of importance | True
+
+
 ## Usage
 ```bash
 python lafontaine.py -f res/videos/northbynorthwest.mp4 -s res/subtitles/northbynorthwest.srt -c res/config/action.lf -t "North by Northwest" -d 480 -cd
@@ -144,3 +165,5 @@ Parameter|Description|Required
 <sup>1</sup>: If this option is not given, subtitle features will be disabled.
 
 <sup>2</sup>: Aspect ration will be preserved.
+
+## Example Trailer
