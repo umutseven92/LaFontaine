@@ -15,7 +15,7 @@ from lafontaine.feature_director.features.subtitle.subtitle_intensity_detector i
 
 class ConfigParser:
     @staticmethod
-    def get_director_from_config(config: str) -> FeatureDirector:
+    def get_director_from_config(config: str, cuda:bool) -> FeatureDirector:
         all_features = []
 
         loaded = json.loads(config)
@@ -30,7 +30,7 @@ class ConfigParser:
             # Image Features
             if feature_id == 'FaceRecognizer':
                 face_count = feature['face_count']
-                all_features.append(FaceRecognizer(face_count, frames))
+                all_features.append(FaceRecognizer(face_count, frames, cuda))
 
             elif feature_id == 'ColorCounter':
                 color_count = feature['color_count']

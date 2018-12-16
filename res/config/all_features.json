@@ -25,7 +25,7 @@
     },
     {
       "id": "FrameDeltaDetector",
-      "delta": 3,
+      "delta": 0.95,
       "frame_limit": 50,
       "scene_change_limit": 3,
       "frames": 75

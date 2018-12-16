@@ -8,12 +8,13 @@ from lafontaine.generator.video_generator import VideoGenerator
 from lafontaine.parser.config_parser import ConfigParser
 from lafontaine.parser.video_parser import VideoParser
 
-parser = argparse.ArgumentParser(description='Generate trailers from movies')
-parser.add_argument('-f', '--file', help='Path for the video', required=True)
-parser.add_argument('-c', '--config', help='Path for the configuration', required=True)
-parser.add_argument('-s', '--sub', help='Path for the subtitle', required=False)
-parser.add_argument('-d', '--downscale', help='Downscale the movie for better performance', required=False)
-parser.add_argument('-t', '--title', help='Title screen in the end', required=False)
+parser = argparse.ArgumentParser(description='LaFontaine is an automatic movie trailer generator.')
+parser.add_argument('-f', '--file', help='Path for the video.', required=True)
+parser.add_argument('-c', '--config', help='Path for the configuration file.', required=True)
+parser.add_argument('-s', '--sub', help='Path for the subtitle file.', required=False)
+parser.add_argument('-d', '--downscale', help='Which width to downscale the video to.', required=False)
+parser.add_argument('-t', '--title', help='Title screen to put in the end of the trailer.', required=False)
+parser.add_argument('-cd', '--cuda', help='Enable CUDA support.', action='store_true')
 args = vars(parser.parse_args())
 
 path_to_video = args['file']
@@ -21,11 +22,12 @@ path_to_config = args['config']
 path_to_sub = args['sub']
 optimize = args['downscale']
 title = args['title']
+cuda = args['cuda']
 
 # Parsers
 config_contents = Path(path_to_config).read_text()
 
-director = ConfigParser.get_director_from_config(config_contents)
+director = ConfigParser.get_director_from_config(config_contents, cuda)
 
 video_parser = VideoParser(path_to_video, path_to_sub, optimize)
 
