@@ -182,15 +182,18 @@ Parameter|Description|Required
 --- | ---| ---
 -f, --file | Path to the video file | True 
 -s, --sub | Path to the subtitle file<sup>1</sup> | False
+-o, --output | Path to the output file<sup>2</sup> | False
 -c, --config | Path to the feature configuration file | True
 -t, --title | What to put on the title card in the end of the trailer | False
--d, --downscale | Which width to downscale the resolution to<sup>2</sup>| False
+-d, --downscale | Which width to downscale the resolution to<sup>3</sup>| False
 -cd, --cuda | Enable CUDA support | False
 -sp, --spoiler | Parse only the first half of the movie to avoid spoilers | False
 
 
 <sup>1</sup>: If this option is not given, subtitle features will be disabled.
 
-<sup>2</sup>: Aspect ration will be preserved.
+<sup>2</sup>: If this option is not given, the output will be saved to lafontaine/out/.
+
+<sup>3</sup>: Aspect ration will be preserved.
 
 ## Example Trailer
