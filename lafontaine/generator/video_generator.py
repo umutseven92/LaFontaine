@@ -22,6 +22,7 @@ class VideoGenerator:
     def generate_from_scenes(self, scenes: List[Scene], fps):
         clips = []
         total_duration = 0
+
         for scene in scenes:
             clip = self._generate_from_scene(scene, fps)
             total_duration += clip.duration

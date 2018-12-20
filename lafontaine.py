@@ -13,6 +13,7 @@ def main():
     parser = argparse.ArgumentParser(description='LaFontaine is an automatic movie trailer generator.')
     parser.add_argument('-f', '--file', help='Path for the video.', required=True)
     parser.add_argument('-c', '--config', help='Path for the configuration file.', required=True)
+    parser.add_argument('-o', '--output', help='Path for the output.', required=False)
     parser.add_argument('-s', '--sub', help='Path for the subtitle file.', required=False)
     parser.add_argument('-d', '--downscale', help='Which width to downscale the video to.', required=False)
     parser.add_argument('-t', '--title', help='Title screen to put in the end of the trailer.', required=False)
@@ -22,6 +23,7 @@ def main():
 
     path_to_video = args['file']
     path_to_config = args['config']
+    output_path = args['output']
     path_to_sub = args['sub']
     optimize = args['downscale']
     title = args['title']
@@ -50,11 +52,15 @@ def main():
     print(f'Found {len(scenes)} scenes.')
 
     # Generator
-    video_name = os.path.basename(path_to_video)
-    base_path = f'out/{video_name}'
-    pathlib.Path(base_path).mkdir(exist_ok=True)
+    if output_path:
+        save_path = output_path
+    else:
+        video_name = os.path.basename(path_to_video)
+        base_path = f'out/'
+        pathlib.Path(base_path).mkdir(exist_ok=True)
+        save_path = f'{base_path}/trailer_{video_name}'
 
-    video_generator = VideoGenerator(path_to_video, director.max_length, f'{base_path}/{video_name}_trailer.mp4', title)
+    video_generator = VideoGenerator(path_to_video, director.max_length, f'{save_path}', title)
     video_generator.generate_from_scenes(scenes, video_stats.fps)
 
 
