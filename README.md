@@ -1,4 +1,4 @@
-
+es/videos
 # LaFontaine [![Build Status](https://travis-ci.org/umutseven92/LaFontaine.svg?branch=master)](https://travis-ci.org/umutseven92/LaFontaine) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6b6a32080d154b9b910a804511fcf251)](https://app.codacy.com/app/umutseven92/LaFontaine?utm_source=github.com&utm_medium=referral&utm_content=umutseven92/LaFontaine&utm_campaign=Badge_Grade_Dashboard)
 LaFontaine is an automatic movie trailer generator.
 
@@ -187,6 +187,8 @@ Parameter|Description|Required
 -t, --title | What to put on the title card in the end of the trailer | False
 -d, --downscale | Which width to downscale the resolution to<sup>2</sup>| False
 -cd, --cuda | Enable CUDA support | False
+-sp, --spoiler | Parse only the first half of the movie to avoid spoilers | False
+
 
 <sup>1</sup>: If this option is not given, subtitle features will be disabled.
 
