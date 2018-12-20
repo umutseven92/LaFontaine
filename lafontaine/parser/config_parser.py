@@ -15,7 +15,7 @@ from lafontaine.feature_director.features.subtitle.subtitle_intensity_detector i
 
 class ConfigParser:
     @staticmethod
-    def get_director_from_config(config: str, cuda:bool) -> FeatureDirector:
+    def get_director_from_config(config: str, cuda: bool) -> FeatureDirector:
         all_features = []
 
         loaded = json.loads(config)

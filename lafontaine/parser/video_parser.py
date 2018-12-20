@@ -28,7 +28,7 @@ class VideoParser:
 
         self.video_stats = VideoStats(self.video.fps, self.video.w, self.video.h)
 
-    def get_scenes(self, feature_director: FeatureDirector):
+    def get_scenes(self, feature_director: FeatureDirector, spoiler: bool):
         scenes = []
         current_scene = None
         countdown = None
@@ -37,7 +37,12 @@ class VideoParser:
         for t, raw_img in self.video.iter_frames(with_times=True):
             audio_frame = self.audio.get_frame(t)
 
-            percent = (100 / self.duration) * t
+            if spoiler:
+                percent = (100 / (self.duration / 2)) * t
+                if percent >= 100:
+                    break
+            else:
+                percent = (100 / self.duration) * t
 
             if self.subs:
                 sub = self.subs.at(seconds=t)
