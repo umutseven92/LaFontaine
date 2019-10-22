@@ -21,7 +21,7 @@ multiprocess==0.70.6.1
 mypy==0.641
 mypy-extensions==0.4.1
 numpy==1.15.4
-Pillow==5.3.0
+Pillow==6.2.0
 pluggy==0.8.0
 pox==0.2.4
 ppft==1.6.4.8
