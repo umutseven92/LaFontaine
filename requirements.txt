@@ -25,7 +25,7 @@ Pillow==5.3.0
 pluggy==0.8.0
 pox==0.2.4
 ppft==1.6.4.8
-py==1.7.0
+py==1.10.0
 pycodestyle==2.4.0
 pydub==0.23.0
 pyflakes==2.0.0
